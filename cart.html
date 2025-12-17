@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - African Heroes Legacy</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/store.css">
+</head>
+
+<body>
+    <!-- Navigation Placeholder -->
+    <div id="nav-placeholder"></div>
+
+    <div class="container">
+        <h1>Your Cart</h1>
+        <div id="cart-container">
+            <p>Your cart is empty.</p>
+        </div>
+
+        <div id="cart-summary"
+            style="margin-top: 2rem; border-top: 2px solid var(--color-primary); padding-top: 1rem; text-align: right; display:none;">
+            <h3>Total: $<span id="cart-total">0.00</span></h3>
+            <button class="btn btn-primary" id="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/cart.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heritage & Heroes Store</title>
+    <link rel="stylesheet" href="css/store.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="store-header">
+        <a href="index.html" class="logo">
+            <i class="fas fa-landmark"></i>
+            HERITAGE & HEROES
+        </a>
+
+        <div class="header-actions">
+            <button id="currency-btn" class="currency-toggle">Currency: USD</button>
+            <div class="cart-icon" onclick="alert('Cart functionality coming soon for final checkout!')">
+                <i class="fas fa-shopping-bag"></i>
+                <span id="cart-count" class="cart-count">0</span>
+            </div>
+            <a href="index.html" style="text-decoration: none; font-size: 0.9rem; color: #3E2723;">
+                <i class="fas fa-arrow-left"></i> Museum
+            </a>
+        </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="store-container">
+
+        <!-- SIDEBAR FILTERS -->
+        <aside class="filters">
+            <div class="filter-group">
+                <h3>Collections</h3>
+                <div id="type-filters">
+                    <button class="filter-btn active" onclick="filterByType('All')">All Items</button>
+                    <button class="filter-btn" onclick="filterByType('T-Shirt')">T-Shirts</button>
+                    <button class="filter-btn" onclick="filterByType('Hoodie')">Hoodies</button>
+                    <button class="filter-btn" onclick="filterByType('Poster')">Posters</button>
+                    <button class="filter-btn" onclick="filterByType('Bottle')">Bottles</button>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>Legends</h3>
+                <div id="hero-filters">
+                    <button class="filter-btn active" onclick="state.filterHero='All'; renderProducts();">All
+                        Heroes</button>
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- PRODUCT GRID -->
+        <main id="product-grid" class="product-grid">
+            <!-- Injected via JS -->
+            <p>Loading Artifacts...</p>
+        </main>
+    </div>
+
+    <script src="js/store.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - African Heroes Legacy</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+    <!-- Navigation Placeholder -->
+    <div id="nav-placeholder"></div>
+
+    <div class="container" id="admin-login-screen">
+        <div
+            style="max-width: 400px; margin: 3rem auto; padding: 2rem; background: white; border-radius: 8px; box-shadow: var(--shadow-soft);">
+            <h2 style="text-align: center;">Admin Access</h2>
+            <p style="text-align: center; margin-bottom: 1rem;">Please login to continue</p>
+            <p style="text-align: center;"><a href="login.html" class="btn btn-primary">Go to Login</a></p>
+        </div>
+    </div>
+
+    <div class="container" id="admin-dashboard" style="display: none;">
+        <h1>Dashboard</h1>
+
+        <div class="admin-grid">
+            <!-- Manage Heroes -->
+            <div class="admin-section">
+                <h2>Manage Heroes</h2>
+                <form id="add-hero-form">
+                    <input type="text" id="hero-name" placeholder="Name" required>
+                    <input type="text" id="hero-short-desc" placeholder="Short Description" required>
+                    <textarea id="hero-desc" placeholder="Full Bio" required></textarea>
+                    <input type="url" id="hero-image" placeholder="Image URL (http...)" required>
+                    <input type="url" id="hero-video" placeholder="Video URL (Embed)" required>
+                    <button type="submit" class="btn btn-primary">Add Hero</button>
+                    <!-- <button type="button" id="seed-heroes" class="btn btn-secondary">Seed Default Heroes</button> -->
+                </form>
+                <div id="heroes-list" class="item-list"></div>
+            </div>
+
+            <!-- Manage Products -->
+            <div class="admin-section">
+                <h2>Manage Products</h2>
+                <form id="add-product-form">
+                    <input type="text" id="prod-name" placeholder="Product Name" required>
+                    <input type="number" id="prod-price" placeholder="Price" step="0.01" required>
+                    <input type="text" id="prod-category" placeholder="Category" required>
+                    <input type="url" id="prod-image" placeholder="Image URL" required>
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                    <!-- <button type="button" id="seed-products" class="btn btn-secondary">Seed Default Products</button> -->
+                </form>
+                <div id="products-list" class="item-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/admin.js"></script>
+</body>
+
+</html>

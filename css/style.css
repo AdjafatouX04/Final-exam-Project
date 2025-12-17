@@ -1,0 +1,192 @@
+/* css/style.css */
+
+:root {
+    /* Color Palette - Bright & Clear African Tones */
+    --color-primary: #8D6E63;
+    /* Softer Terra Cotta (was Dark Coffee) */
+    --color-secondary: #FF7043;
+    /* Bright Coral Orange */
+    --color-accent: #FFD54F;
+    /* Sunflower Gold */
+    --color-bg-body: #FAFAFA;
+    /* Pure Off-White (Clean) */
+    --color-bg-card: #FFFFFF;
+    /* White */
+    --color-text-main: #3E2723;
+    /* Keep dark brown for text contrast only */
+    --color-text-light: #FFFFFF;
+
+    /* Spacing & Borders */
+    --border-radius: 12px;
+    --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.05);
+    /* Lighter shadow */
+    --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-bg-body);
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+    font-family: 'Georgia', serif;
+    /* Storytelling feel */
+    color: var(--color-primary);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
+
+/* Navigation */
+nav {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-accent);
+}
+
+/* Mobile Menu Button - Initially Hidden on Desktop */
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-accent);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+nav ul li a:hover {
+    color: var(--color-accent);
+}
+
+/* --- MOBILE RESPONSIVENESS (QA FIX) --- */
+@media (max-width: 768px) {
+
+    /* Show the hamburger menu icon */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Hide the list by default on mobile */
+    nav ul {
+        display: none;
+        /* Hidden until toggled */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-primary);
+        padding: 1rem 0;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* The class 'active' will be added by JS to show the menu */
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s ease, background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: 2px solid var(--color-primary);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    border-color: var(--color-accent);
+}
+
+/* Utilities */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+/* Card Style (Used for Heroes and Products) */
+.card {
+    background: var(--color-bg-card);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid #e0d0b8;
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: top;
+}
+
+.card-content {
+    padding: 1.5rem;
+    text-align: center;
+}

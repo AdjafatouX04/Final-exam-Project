@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Museum of African Legends</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- VISUAL PSYCHOLOGY: ANCESTRAL FUTURE --- */
+        :root {
+            --color-ebony: #050505;
+            --color-vibranium: #7c3aed;
+            --color-gold: #fbbf24;
+            --color-terracotta: #c2410c;
+        }
+
+        body {
+            background-color: var(--color-ebony);
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 85% 90%, rgba(251, 191, 36, 0.05) 0%, transparent 30%);
+        }
+
+        h1,
+        h2,
+        h3,
+        .font-ancient {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* --- THE PHYSICS ENGINE (Levitation) --- */
+        @keyframes levitate {
+            0% {
+                transform: translateY(0px) scale(1);
+            }
+
+            50% {
+                transform: translateY(-12px) scale(1.01);
+            }
+
+            100% {
+                transform: translateY(0px) scale(1);
+            }
+        }
+
+        .levitate-ancestor {
+            animation: levitate 8s ease-in-out infinite;
+            will-change: transform;
+            /* Performance Optimization */
+        }
+
+        /* Stagger animations for organic feel */
+        .levitate-ancestor:nth-child(even) {
+            animation-duration: 9.5s;
+            animation-delay: 1s;
+        }
+
+        .levitate-ancestor:nth-child(3n) {
+            animation-duration: 7s;
+            animation-delay: 2s;
+        }
+
+        /* --- ARTIFACT GLOW & UTILS --- */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .artifact-glow:hover {
+            box-shadow: 0 0 25px rgba(124, 58, 237, 0.3);
+            border-color: var(--color-vibranium);
+        }
+
+        .text-neon {
+            text-shadow: 0 0 8px rgba(34, 211, 238, 0.6);
+        }
+
+        .text-gold-glow {
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.4);
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
+        <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="text-2xl font-bold tracking-widest font-ancient text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-amber-400 cursor-pointer"
+                onclick="App.router('#gallery')">
+                AFRICAN LEGENDS
+            </div>
+            <div class="flex gap-8 text-sm font-medium tracking-widest uppercase text-gray-400">
+                <button onclick="App.router('#gallery')" class="hover:text-amber-400 transition-colors">Museum</button>
+                <a href="store.html" class="hover:text-amber-400 transition-colors">STORE</a>
+                <button onclick="App.router('#login')" id="nav-login-btn"
+                    class="hover:text-purple-400 transition-colors">Griot Access</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT CONTAINER -->
+    <main class="flex-grow pt-28 px-4 pb-12 container mx-auto relative">
+
+        <!-- VIEW: GALLERY (Public) -->
+        <section id="view-gallery" class="view-section">
+            <header class="text-center mb-20 space-y-4">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-2 tracking-wide">ANCESTORS OF THE FUTURE</h1>
+                <div class="h-1 w-24 bg-gradient-to-r from-purple-500 to-amber-500 mx-auto rounded-full"></div>
+                <p class="text-gray-400 max-w-xl mx-auto text-lg pt-4 leading-relaxed">
+                    Explore the history of Kings, Queens, and Revolutionaries presented in zero-gravity.
+                </p>
+            </header>
+
+            <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Data Injected Here -->
+            </div>
+        </section>
+
+        <!-- VIEW: DETAILS MODAL -->
+        <div id="view-details"
+            class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+            onclick="App.closeDetails(event)">
+            <div class="glass-panel w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl relative grid md:grid-cols-2"
+                onclick="event.stopPropagation()">
+                <button onclick="App.closeDetails()"
+                    class="absolute top-4 right-4 text-gray-400 hover:text-white z-10 p-2">✕ CLOSE</button>
+
+                <div class="h-64 md:h-full relative overflow-hidden">
+                    <img id="detail-img" src="" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-60"></div>
+                </div>
+
+                <div class="p-8 md:p-12 space-y-6">
+                    <div>
+                        <span id="detail-era"
+                            class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase"></span>
+                        <h2 id="detail-name" class="text-4xl font-ancient text-white mt-2 mb-4 leading-none"></h2>
+                        <div class="h-0.5 w-12 bg-purple-500"></div>
+                    </div>
+                    <p id="detail-bio" class="text-gray-300 leading-relaxed text-lg font-light"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: LOGIN (Gatekeeper) -->
+        <section id="view-login" class="view-section hidden min-h-[60vh] flex items-center justify-center">
+            <div class="glass-panel p-8 md:p-12 rounded-2xl w-full max-w-md border-t border-purple-500/30">
+                <h2 class="text-3xl text-center mb-8 font-ancient text-purple-200">Griot Gatekeeper</h2>
+                <form id="login-form" class="space-y-6">
+                    <div class="space-y-2">
+                        <label class="text-xs uppercase tracking-widest text-gray-500">Identifier</label>
+                        <input type="text" id="username"
+                            class="w-full bg-black/40 border border-gray-700 rounded-lg p-3 text-white focus:border-purple-500 outline-none transition"
+                            placeholder="griot">
+                        <p class="text-xs text-gray-600 mt-1">Sample ID: <span class="text-gray-400">griot</span></p>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs uppercase tracking-widest text-gray-500">Secret Key</label>
+                        <input type="password" id="password"
+                            class="w-full bg-black/40 border border-gray-700 rounded-lg p-3 text-white focus:border-purple-500 outline-none transition"
+                            placeholder="africa">
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-purple-700 hover:bg-purple-600 text-white font-bold py-3.5 rounded-lg tracking-widest shadow-lg shadow-purple-900/20 transition-all">ENTER
+                        ARCHIVES</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- VIEW: ADMIN DASHBOARD -->
+        <section id="view-admin" class="view-section hidden">
+            <div class="flex justify-between items-end mb-10 border-b border-white/10 pb-6">
+                <div>
+                    <h2 class="text-3xl font-ancient text-amber-500">Archive Management</h2>
+                    <p class="text-gray-400 text-sm mt-1">Authorized Access Only | Support: <span
+                            class="text-purple-400">admin@africanlegends.com</span></p>
+                </div>
+                <button onclick="App.logout()"
+                    class="text-xs border border-gray-600 px-4 py-2 rounded hover:bg-white/5 transition">LOGOUT</button>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Form -->
+                <div class="lg:col-span-1">
+                    <div class="glass-panel p-6 rounded-xl sticky top-24">
+                        <h3 class="text-xl mb-6 font-medium text-purple-300">Summon New Hero</h3>
+                        <form id="add-hero-form" class="space-y-4">
+                            <input type="text" id="in-name" placeholder="Name"
+                                class="w-full bg-black/30 border border-gray-700 rounded p-3 focus:border-amber-500 outline-none text-sm"
+                                required>
+                            <input type="text" id="in-era" placeholder="Era / Region"
+                                class="w-full bg-black/30 border border-gray-700 rounded p-3 focus:border-amber-500 outline-none text-sm"
+                                required>
+                            <input type="url" id="in-image" placeholder="Image URL"
+                                class="w-full bg-black/30 border border-gray-700 rounded p-3 focus:border-amber-500 outline-none text-sm"
+                                required>
+                            <textarea id="in-bio" placeholder="The Legend (Bio)"
+                                class="w-full bg-black/30 border border-gray-700 rounded p-3 focus:border-amber-500 outline-none text-sm h-32"
+                                required></textarea>
+                            <button type="submit"
+                                class="w-full bg-amber-600 hover:bg-amber-500 text-black font-bold py-3 rounded tracking-wide transition-all">SUMMON
+                                HERO</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="lg:col-span-2">
+                    <div class="glass-panel rounded-xl overflow-hidden">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="bg-white/5 text-xs text-gray-400 uppercase tracking-widest">
+                                <tr>
+                                    <th class="p-4">Hero</th>
+                                    <th class="p-4 hidden sm:table-cell">Era</th>
+                                    <th class="p-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-table-body" class="divide-y divide-gray-800"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- THE GRIOT ENGINE (JS) -->
+    <script>
+        const STORAGE_KEY = 'ancestral_legends_db';
+        const AUTH_KEY = 'griot_session';
+
+        // --- SEED DATA (16 HEROES) ---
+        const SEED_DATA = [
+            { id: "h-1", name: "Sundiata Keita", era: "Mali – 13th Century", bio: "Sundiata Keita is the founder of the Mali Empire. Born weak and unable to walk, he was mocked as a child, but he later rose with great strength and wisdom. He united the Mandinka people and defeated the oppressive king Soumaoro Kanté at the Battle of Kirina. Under Sundiata’s leadership, Mali became one of the richest and most powerful empires in Africa, famous for justice, learning, and trade.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Sundiata" },
+            { id: "h-2", name: "Mansa Musa", era: "Mali – 14th Century", bio: "Mansa Musa was one of the richest rulers in world history. He ruled the Mali Empire and is best known for his famous pilgrimage to Mecca, during which he distributed so much gold that it affected economies. He promoted education, built mosques and universities like Timbuktu, and made Mali a global center of knowledge and culture.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Mansa+Musa" },
+            { id: "h-3", name: "Shaka Zulu", era: "South Africa – 19th Century", bio: "Shaka Zulu was a powerful military leader who transformed the Zulu kingdom into a strong and feared nation. He introduced new battle strategies, disciplined armies, and short stabbing spears. Shaka united many clans and changed the political and military landscape of Southern Africa.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Shaka+Zulu" },
+            { id: "h-4", name: "Queen Amina", era: "Nigeria – 16th Century", bio: "Queen Amina of Zazzau was a fearless warrior queen who expanded her kingdom through military conquest. She led armies on horseback, built defensive walls around cities, and established trade routes. Her bravery and leadership made her one of the most legendary female rulers in African history.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Queen+Amina" },
+            { id: "h-5", name: "Yaa Asantewaa", era: "Ghana – 1900", bio: "Yaa Asantewaa was the Queen Mother of Ejisu in the Ashanti Empire. She led a rebellion against British colonial forces when they tried to seize the sacred Golden Stool. Her courage inspired resistance and symbolized African defiance against colonial oppression.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Yaa+Asantewaa" },
+            { id: "h-6", name: "Samory Touré", era: "Guinea / Mali – 19th Century", bio: "Samory Touré was a strong military leader who resisted French colonial expansion in West Africa. He built a well-organized empire with modern weapons and strong administration. For years, he successfully defended his people against European forces before being captured.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Samory+Toure" },
+            { id: "h-7", name: "Thomas Sankara", era: "Burkina Faso – 1980s", bio: "Thomas Sankara was a revolutionary leader known as “Africa’s Che Guevara.” He promoted self-reliance, women’s rights, education, and environmental protection. Sankara rejected corruption and foreign dependence, inspiring Africans to believe in dignity and independence.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Thomas+Sankara" },
+            { id: "h-8", name: "Nelson Mandela", era: "South Africa – 20th Century", bio: "Nelson Mandela was a freedom fighter who opposed apartheid, a racist system in South Africa. He spent 27 years in prison but chose forgiveness instead of revenge after his release. Mandela became South Africa’s first Black president and a global symbol of peace and justice.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Nelson+Mandela" },
+            { id: "h-9", name: "Haile Selassie", era: "Ethiopia – 20th Century", bio: "Haile Selassie was Emperor of Ethiopia and a symbol of African independence. He resisted Italian invasion and later played a key role in founding the Organization of African Unity (OAU). He is remembered for defending African sovereignty and unity.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Haile+Selassie" },
+            { id: "h-10", name: "Toussaint Louverture", era: "Haiti – African Diaspora", bio: "Toussaint Louverture was born enslaved but became the leader of the Haitian Revolution. He led enslaved Africans to victory against colonial powers, creating the first Black republic. His struggle inspired freedom movements across Africa and the world.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Toussaint" },
+            { id: "h-11", name: "Funmilayo Ransome-Kuti", era: "Nigeria – 20th Century", bio: "Funmilayo Ransome-Kuti was a women’s rights activist and nationalist. She fought against unfair colonial taxes and defended women’s political participation. She played a major role in Nigeria’s independence movement.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Funmilayo" },
+            { id: "h-12", name: "Menelik II", era: "Ethiopia – 19th Century", bio: "Menelik II was Emperor of Ethiopia and led African forces to defeat Italy at the Battle of Adwa. This victory preserved Ethiopia’s independence during the colonial era and became a symbol of African resistance and pride.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Menelik+II" },
+            { id: "h-13", name: "Lat Dior Ngoné Latyr Diop", era: "Senegal – 19th Century", bio: "Lat Dior was the Damel (king) of Cayor and a major figure of resistance against French colonial rule in Senegal. He fought bravely to protect his kingdom’s independence and opposed the construction of the railway that threatened local sovereignty. Lat Dior is remembered for his courage, patriotism, and sacrifice for freedom.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Lat+Dior" },
+            { id: "h-14", name: "Cheikh Ahmadou Bamba", era: "Senegal – 19th–20th Century", bio: "Cheikh Ahmadou Bamba was a religious leader and founder of the Mouride brotherhood. He promoted peace, hard work, faith, and non-violent resistance against colonial oppression. Despite exile and persecution by French authorities, he remained committed to spiritual teachings. He is one of the most respected figures in Senegalese and African history.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Cheikh+Ahmadou" },
+            { id: "h-15", name: "Maba Diakhou Ba", era: "Senegal – 19th Century", bio: "Maba Diakhou Ba was a Muslim leader and reformer who led resistance against colonial forces and local injustices. He sought to establish justice and moral governance based on Islamic principles. His struggle inspired resistance movements across Senegambia.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Maba+Diakhou" },
+            { id: "h-16", name: "Aline Sitoe Diatta", era: "Senegal – 20th Century", bio: "Aline Sitoe Diatta was a spiritual leader and resistance figure from Casamance. She opposed forced labor, heavy taxation, and colonial exploitation. Known for her courage and wisdom, she encouraged people to preserve African values and dignity. She was arrested by colonial authorities and died in exile, becoming a symbol of resistance and pride.", imageUrl: "https://placehold.co/400x500/1e1e1e/d4af37?text=Aline+Sitoe" }
+        ];
+
+        // --- APP CONTROLLER ---
+        const App = {
+            data: [],
+
+            init() {
+                this.loadData();
+                this.router();
+                this.renderGallery();
+                this.checkAuth();
+            },
+
+            // --- DATA LOGIC ---
+            loadData() {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    this.data = JSON.parse(stored);
+                } else {
+                    // Seed Logic
+                    this.data = SEED_DATA;
+                    this.saveData();
+                }
+            },
+
+            saveData() {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(this.data));
+                this.renderGallery();
+                this.renderAdminTable();
+            },
+
+            // --- ROUTER ---
+            router(route) {
+                const hash = route || window.location.hash || '#gallery';
+
+                // Reset views
+                document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+
+                // View logic
+                if (hash === '#admin') {
+                    if (!this.isLoggedIn()) {
+                        this.router('#login');
+                        return;
+                    }
+                    document.getElementById('view-admin').classList.remove('hidden');
+                    this.renderAdminTable();
+                } else if (hash === '#login') {
+                    document.getElementById('view-login').classList.remove('hidden');
+                } else {
+                    document.getElementById('view-gallery').classList.remove('hidden');
+                }
+
+                // Update URL for history
+                if (route) window.history.pushState(null, null, route);
+            },
+
+            // --- AUTH ---
+            login(u, p) {
+                if (u === 'griot' && p === 'africa') {
+                    localStorage.setItem(AUTH_KEY, 'true');
+                    this.checkAuth();
+                    this.router('#admin');
+                } else {
+                    alert('Access Denied. Only the Griot may enter.');
+                }
+            },
+
+            logout() {
+                localStorage.removeItem(AUTH_KEY);
+                location.reload();
+            },
+
+            isLoggedIn() {
+                return localStorage.getItem(AUTH_KEY) === 'true';
+            },
+
+            checkAuth() {
+                if (this.isLoggedIn()) {
+                    const btn = document.getElementById('nav-login-btn');
+                    btn.innerText = "ADMIN PANEL";
+                    btn.setAttribute('onclick', "App.router('#admin')");
+                }
+            },
+
+            // --- RENDERING ---
+            renderGallery() {
+                const grid = document.getElementById('gallery-grid');
+                grid.innerHTML = this.data.map((h, i) => `
+                    <article class="glass-panel overflow-hidden rounded-xl levitate-ancestor group cursor-pointer artifact-glow transition-all duration-500"
+                        onclick="App.showDetails('${h.id}')">
+                        <div class="h-64 relative overflow-hidden">
+                            <img src="${h.imageUrl}" class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                                onerror="this.src='https://placehold.co/400x500/1e1e1e/d4af37?text=Ancient+Spirit'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-80"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <span class="text-xs font-bold tracking-widest text-amber-500 uppercase block mb-1">${h.era}</span>
+                                <h3 class="text-2xl font-ancient text-white leading-none group-hover:text-purple-400 transition-colors">${h.name}</h3>
+                            </div>
+                        </div>
+                    </article>
+                `).join('');
+            },
+
+            renderAdminTable() {
+                const tbody = document.getElementById('admin-table-body');
+                tbody.innerHTML = this.data.map(h => `
+                    <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                        <td class="p-4 flex items-center gap-3">
+                            <img src="${h.imageUrl}" class="w-10 h-10 rounded object-cover bg-gray-800">
+                            <span class="font-medium text-white">${h.name}</span>
+                        </td>
+                        <td class="p-4 text-gray-400 text-sm hidden sm:table-cell">${h.era}</td>
+                        <td class="p-4 text-right">
+                            <button onclick="App.deleteHero('${h.id}')" class="text-red-400 hover:text-red-300 text-xs uppercase tracking-wider font-bold">Delete</button>
+                        </td>
+                    </tr>
+                `).join('');
+            },
+
+            // --- ACTIONS ---
+            addHero(hero) {
+                hero.id = 'h-' + Date.now();
+                this.data.unshift(hero); // Add to top
+                this.saveData();
+                alert('Hero Summoned Successfully.');
+            },
+
+            deleteHero(id) {
+                if (confirm('Are you sure you want to erase this history? This action is irreversible.')) {
+                    this.data = this.data.filter(h => h.id !== id);
+                    this.saveData();
+                }
+            },
+
+            showDetails(id) {
+                const hero = this.data.find(h => h.id === id);
+                if (!hero) return;
+
+                document.getElementById('detail-img').src = hero.imageUrl;
+                document.getElementById('detail-name').innerText = hero.name;
+                document.getElementById('detail-era').innerText = hero.era;
+                document.getElementById('detail-bio').innerText = hero.bio;
+
+                document.getElementById('view-details').classList.remove('hidden');
+            },
+
+            closeDetails(e) {
+                if (e && e.target !== e.currentTarget) return; // Prevent close when clicking inside modal content
+                document.getElementById('view-details').classList.add('hidden');
+            }
+        };
+
+        // --- INIT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            App.init();
+
+            // Form Listeners
+            document.getElementById('login-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                App.login(document.getElementById('username').value, document.getElementById('password').value);
+            });
+
+            document.getElementById('add-hero-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const hero = {
+                    name: document.getElementById('in-name').value,
+                    era: document.getElementById('in-era').value,
+                    imageUrl: document.getElementById('in-image').value,
+                    bio: document.getElementById('in-bio').value
+                };
+                App.addHero(hero);
+                e.target.reset();
+            });
+        });
+    </script>
+</body>
+
+</html>

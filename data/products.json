@@ -1,0 +1,44 @@
+[
+    {
+        "id": "101",
+        "name": "Shaka Zulu Warrior Hoodie",
+        "price": 45.00,
+        "imageUrl": "https://placehold.co/300x300/5D4037/FFF8E1?text=Zulu+Hoodie",
+        "category": "Clothing"
+    },
+    {
+        "id": "102",
+        "name": "Yaa Asantewaa 'Golden Stool' Tote",
+        "price": 20.00,
+        "imageUrl": "https://placehold.co/300x300/BF360C/FFF8E1?text=Asantewaa+Tote",
+        "category": "Accessories"
+    },
+    {
+        "id": "103",
+        "name": "Mansa Musa Gold Print Tee",
+        "price": 30.00,
+        "imageUrl": "https://placehold.co/300x300/FFC107/3E2723?text=Musa+Gold+Tee",
+        "category": "Clothing"
+    },
+    {
+        "id": "104",
+        "name": "Queen Nzinga Resistance Poster",
+        "price": 15.00,
+        "imageUrl": "https://placehold.co/300x300/5D4037/FFF8E1?text=Nzinga+Poster",
+        "category": "Art"
+    },
+    {
+        "id": "105",
+        "name": "Sankara 'Upright Man' Cap",
+        "price": 25.00,
+        "imageUrl": "https://placehold.co/300x300/BF360C/FFF8E1?text=Sankara+Cap",
+        "category": "Accessories"
+    },
+    {
+        "id": "106",
+        "name": "Adwa Victory Commemorative Mug",
+        "price": 18.00,
+        "imageUrl": "https://placehold.co/300x300/FFC107/3E2723?text=Adwa+Mug",
+        "category": "Home"
+    }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "name": "Shaka Zulu",
+    "shortDescription": "The unifier and great warrior king of the Zulu Kingdom.",
+    "description": "Shaka kaSenzangakhona, also known as Shaka Zulu, was a great Zulu king and conqueror. He is renowned for uniting many of the Northern Nguni people into the Zulu Kingdom. His innovative military tactics and customized weaponry transformed the region's warfare.",
+    "imageUrl": "assets/images/shaka.jpg",
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    "id": "2",
+    "name": "Yaa Asantewaa",
+    "shortDescription": "Queen Mother and War Leader of the Ashanti Empire.",
+    "description": "Yaa Asantewaa was the Queen Mother of Ejisu in the Ashanti Empire. In 1900, she led the Ashanti war known as the War of the Golden Stool, or the Yaa Asantewaa War, against British colonialism.",
+    "imageUrl": "assets/images/yaa_asantewaa.jpg",
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    "id": "3",
+    "name": "Mansa Musa",
+    "shortDescription": "Relationships, wealth, and the Golden Pilgrimage of Mali.",
+    "description": "Mansa Musa was the tenth Mansa of the Mali Empire. He is often described as the wealthiest individual in all human history. His pilgrimage to Mecca in 1324 introduced the world to the immense wealth of Mali.",
+    "imageUrl": "assets/images/mansa_musa.jpg",
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    "id": "4",
+    "name": "Queen Nzinga",
+    "shortDescription": "The fearless monarch of the Ndongo and Matamba Kingdoms.",
+    "description": "Nzinga Ana de Sousa Mbande was a 17th-century queen who fought against the Portuguese slave trade and colonial expansion in present-day Angola. She was a brilliant diplomat and military strategist.",
+    "imageUrl": "https://placehold.co/400x300/5D4037/FFF8E1?text=Queen+Nzinga",
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    "id": "5",
+    "name": "Thomas Sankara",
+    "shortDescription": "The Upright Man and Revolutionary leader of Burkina Faso.",
+    "description": "Thomas Sankara was a Burkinabé military officer and socialist revolutionary who served as the President of Burkina Faso. He launched programs for social, ecological, and economic change and renamed the country from Upper Volta to Burkina Faso ('Land of Incorruptible People').",
+    "imageUrl": "assets/images/sankara.jpg",
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    "id": "6",
+    "name": "Empress Taytu Betul",
+    "shortDescription": "Strategist and Empress of Ethiopia who crushed colonial invaders.",
+    "description": "Taytu Betul was an Empress of Ethiopia and wife of Emperor Menelik II. She was a key strategist in the Battle of Adwa, where Ethiopian forces decisively defeated the Italian colonial army.",
+    "imageUrl": "https://placehold.co/400x300/FFC107/3E2723?text=Empress+Taytu",
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  }
+]
